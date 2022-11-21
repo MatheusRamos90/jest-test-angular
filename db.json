@@ -1,0 +1,17 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Matheus",
+      "lastname": "Ramos",
+      "email": "matheus.hrs@live.com",
+      "telephone": "47991251691",
+      "location": {
+        "address": "Apartamento",
+        "zipcode": 89035450,
+        "number": "127",
+        "city": "BLUMENAU"
+      }
+    }
+  ]
+}

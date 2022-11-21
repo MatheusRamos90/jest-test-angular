@@ -1,5 +1,5 @@
-import {UserEditComponent} from './user-edit.component';
-import {UsersService} from "../../../core/services/users/users.service";
+import {UserEditComponent} from '../../../../../app/pages/users/user-edit/user-edit.component';
+import {UsersService} from "../../../../../app/core/services/users/users.service";
 import {FormBuilder} from "@angular/forms";
 import {ActivatedRoute} from "@angular/router";
 

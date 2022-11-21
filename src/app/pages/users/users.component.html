@@ -1,1 +1,32 @@
-<p>users works!</p>
+<div class="row justify-content-center mt-5">
+  <section class="col-lg-5">
+    <h3>Users</h3>
+    <table class="table table-borderless" *ngIf="users.length > 0; else addNewUser">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Lastname</th>
+        <th>Telephone</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let u of users">
+        <td>{{ u.id }}</td>
+        <td>{{ u.name }}</td>
+        <td>{{ u.lastname }}</td>
+        <td>{{ u.telephone }}</td>
+        <td>
+          <button type="button" class="btn btn-sm btn-primary text-white" style="margin-right: 5px" (click)="edit(u)">Edit</button>
+          <button type="button" class="btn btn-sm btn-danger text-white" (click)="remove(u)">Remove</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <ng-template #addNewUser>
+      <p>Not found users... click on below button for add</p>
+      <button type="button" class="btn btn-sm btn-primary text-white center" routerLink="new">New</button>
+    </ng-template>
+  </section>
+</div>
