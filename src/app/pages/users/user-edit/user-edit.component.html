@@ -1,0 +1,64 @@
+<div class="row justify-content-center mt-5">
+  <div class="col-lg-5">
+    <form [formGroup]="formGroup" class="form-">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text"
+               [(ngModel)]="user.name"
+               formControlName="name"
+               [class]="'form-control '.concat((formGroup.controls['name'].errors && (formGroup.controls['name'].dirty || formGroup.controls['name'].touched)) ? 'is-invalid' : '')"
+               id="name"/>
+        <div class="invalid-feedback" *ngIf="formGroup.controls['name'].hasError('required')">
+          Name is required
+        </div>
+        <div class="invalid-feedback" *ngIf="formGroup.controls['name'].hasError('maxlength')">
+          At least 20 characteres are required
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="lastname" class="form-label">Lastname</label>
+        <input type="text"
+               [(ngModel)]="user.lastname"
+               formControlName="lastname"
+               [class]="'form-control '.concat((formGroup.controls['lastname'].errors && (formGroup.controls['lastname'].dirty || formGroup.controls['lastname'].touched)) ? 'is-invalid' : '')"
+               id="lastname">
+        <div class="invalid-feedback" *ngIf="formGroup.controls['lastname'].hasError('required')">
+          Lastname is required
+        </div>
+        <div class="invalid-feedback" *ngIf="formGroup.controls['lastname'].hasError('maxlength')">
+          At least 20 characteres are required
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">E-mail</label>
+        <input type="email"
+               [(ngModel)]="user.email"
+               formControlName="email"
+               [class]="'form-control '.concat((formGroup.controls['email'].errors && (formGroup.controls['email'].dirty || formGroup.controls['email'].touched)) ? 'is-invalid' : '')"
+               id="email">
+        <div class="invalid-feedback" *ngIf="formGroup.controls['email'].hasError('required')">
+          E-mail is required
+        </div>
+        <div class="invalid-feedback" *ngIf="formGroup.controls['email'].hasError('maxlength')">
+          At least 20 characteres are required
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="telephone" class="form-label">Telephone</label>
+        <input type="text"
+               [(ngModel)]="user.telephone"
+               formControlName="telephone"
+               [class]="'form-control '.concat((formGroup.controls['telephone'].errors && (formGroup.controls['telephone'].dirty || formGroup.controls['telephone'].touched)) ? 'is-invalid' : '')"
+               id="telephone">
+        <div class="invalid-feedback" *ngIf="formGroup.controls['telephone'].hasError('required')">
+          Telephone is required
+        </div>
+        <div class="invalid-feedback" *ngIf="formGroup.controls['telephone'].hasError('maxlength')">
+          At least 20 characteres are required
+        </div>
+      </div>
+
+      <input type="button" class="btn btn-primary mt-4" value="Salvar" [disabled]="formGroup.invalid || !user" (click)="save()">
+    </form>
+  </div>
+</div>
