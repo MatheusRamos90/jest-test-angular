@@ -12,7 +12,7 @@ Run frontend:
 - npm run start
 
 Run tests:
--npm run test
+- npm run test
 
 Open app in browser:
 - http://localhost:4200/
