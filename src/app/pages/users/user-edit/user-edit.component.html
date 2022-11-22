@@ -69,45 +69,45 @@
             At least 20 characteres are required
           </div>
         </div>
-        <div class="mb-3">
-          <label for="zipcode" class="form-label">ZIP Code</label>
-          <input type="number"
-                 formControlName="zipcode"
-                 [class]="'form-control '.concat((formGroup.controls['location'].get('zipcode')?.errors && (formGroup.controls['location'].get('zipcode')?.dirty || formGroup.controls['location'].get('zipcode')?.touched)) ? 'is-invalid' : '')"
-                 id="zipcode">
-          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('zipcode')?.hasError('required')">
-            ZIP Code is required
-          </div>
-          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('zipcode')?.hasError('maxlength')">
-            At least 8 characteres are required
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="address" class="form-label">Number</label>
-          <input type="text"
-                 formControlName="number"
-                 [class]="'form-control '.concat((formGroup.controls['location'].get('number')?.errors && (formGroup.controls['location'].get('number')?.dirty || formGroup.controls['location'].get('number')?.touched)) ? 'is-invalid' : '')"
-                 id="number">
-          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('number')?.hasError('required')">
-            Number is required
-          </div>
-          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('number')?.hasError('maxlength')">
-            At least 20 characteres are required
-          </div>
-        </div>
-        <div class="mb-3">
-          <label for="address" class="form-label">City</label>
-          <input type="text"
-                 formControlName="city"
-                 [class]="'form-control '.concat((formGroup.controls['location'].get('city')?.errors && (formGroup.controls['location'].get('city')?.dirty || formGroup.controls['location'].get('city')?.touched)) ? 'is-invalid' : '')"
-                 id="city">
-          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('city')?.hasError('required')">
-            City is required
-          </div>
-          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('city')?.hasError('maxlength')">
-            At least 20 characteres are required
-          </div>
-        </div>
+<!--        <div class="mb-3">-->
+<!--          <label for="zipcode" class="form-label">ZIP Code</label>-->
+<!--          <input type="number"-->
+<!--                 formControlName="zipcode"-->
+<!--                 [class]="'form-control '.concat((formGroup.controls['location'].get('zipcode')?.errors && (formGroup.controls['location'].get('zipcode')?.dirty || formGroup.controls['location'].get('zipcode')?.touched)) ? 'is-invalid' : '')"-->
+<!--                 id="zipcode">-->
+<!--          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('zipcode')?.hasError('required')">-->
+<!--            ZIP Code is required-->
+<!--          </div>-->
+<!--          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('zipcode')?.hasError('maxlength')">-->
+<!--            At least 8 characteres are required-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="mb-3">-->
+<!--          <label for="address" class="form-label">Number</label>-->
+<!--          <input type="text"-->
+<!--                 formControlName="number"-->
+<!--                 [class]="'form-control '.concat((formGroup.controls['location'].get('number')?.errors && (formGroup.controls['location'].get('number')?.dirty || formGroup.controls['location'].get('number')?.touched)) ? 'is-invalid' : '')"-->
+<!--                 id="number">-->
+<!--          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('number')?.hasError('required')">-->
+<!--            Number is required-->
+<!--          </div>-->
+<!--          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('number')?.hasError('maxlength')">-->
+<!--            At least 20 characteres are required-->
+<!--          </div>-->
+<!--        </div>-->
+<!--        <div class="mb-3">-->
+<!--          <label for="address" class="form-label">City</label>-->
+<!--          <input type="text"-->
+<!--                 formControlName="city"-->
+<!--                 [class]="'form-control '.concat((formGroup.controls['location'].get('city')?.errors && (formGroup.controls['location'].get('city')?.dirty || formGroup.controls['location'].get('city')?.touched)) ? 'is-invalid' : '')"-->
+<!--                 id="city">-->
+<!--          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('city')?.hasError('required')">-->
+<!--            City is required-->
+<!--          </div>-->
+<!--          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('city')?.hasError('maxlength')">-->
+<!--            At least 20 characteres are required-->
+<!--          </div>-->
+<!--        </div>-->
       </div>
 
       <input type="button" class="btn btn-primary mt-4" value="Salvar" (click)="save()">
