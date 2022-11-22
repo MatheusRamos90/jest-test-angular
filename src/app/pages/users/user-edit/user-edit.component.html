@@ -1,16 +1,16 @@
 <div class="row justify-content-center mt-5">
   <section class="col-lg-5">
-    <form [formGroup]="formGroup" class="form-">
+    <form [formGroup]="formGroup" (submit)="save()" class="form">
       <div class="mb-3">
         <label for="name" class="form-label">Name</label>
         <input type="text"
                formControlName="name"
-               [class]="'form-control '.concat((formGroup.controls['name'].errors && (formGroup.controls['name'].dirty || formGroup.controls['name'].touched)) ? 'is-invalid' : '')"
+               [class]="'form-control '.concat(verifyFieldInvalid('name') ? 'is-invalid' : '')"
                id="name"/>
-        <div class="invalid-feedback" *ngIf="formGroup.controls['name'].hasError('required')">
+        <div class="invalid-feedback" *ngIf="formGroup.get('name')?.hasError('required')">
           Name is required
         </div>
-        <div class="invalid-feedback" *ngIf="formGroup.controls['name'].hasError('maxlength')">
+        <div class="invalid-feedback" *ngIf="formGroup.get('name')?.hasError('maxlength')">
           At least 20 characteres are required
         </div>
       </div>
@@ -18,12 +18,12 @@
         <label for="lastname" class="form-label">Lastname</label>
         <input type="text"
                formControlName="lastname"
-               [class]="'form-control '.concat((formGroup.controls['lastname'].errors && (formGroup.controls['lastname'].dirty || formGroup.controls['lastname'].touched)) ? 'is-invalid' : '')"
+               [class]="'form-control '.concat(verifyFieldInvalid('lastname') ? 'is-invalid' : '')"
                id="lastname">
-        <div class="invalid-feedback" *ngIf="formGroup.controls['lastname'].hasError('required')">
+        <div class="invalid-feedback" *ngIf="formGroup.get('lastname')?.hasError('required')">
           Lastname is required
         </div>
-        <div class="invalid-feedback" *ngIf="formGroup.controls['lastname'].hasError('maxlength')">
+        <div class="invalid-feedback" *ngIf="formGroup.get('lastname')?.hasError('maxlength')">
           At least 20 characteres are required
         </div>
       </div>
@@ -31,12 +31,12 @@
         <label for="email" class="form-label">E-mail</label>
         <input type="email"
                formControlName="email"
-               [class]="'form-control '.concat((formGroup.controls['email'].errors && (formGroup.controls['email'].dirty || formGroup.controls['email'].touched)) ? 'is-invalid' : '')"
+               [class]="'form-control '.concat(verifyFieldInvalid('email') ? 'is-invalid' : '')"
                id="email">
-        <div class="invalid-feedback" *ngIf="formGroup.controls['email'].hasError('required')">
+        <div class="invalid-feedback" *ngIf="formGroup.get('email')?.hasError('required')">
           E-mail is required
         </div>
-        <div class="invalid-feedback" *ngIf="formGroup.controls['email'].hasError('maxlength')">
+        <div class="invalid-feedback" *ngIf="formGroup.get('email')?.hasError('maxlength')">
           At least 20 characteres are required
         </div>
       </div>
@@ -44,12 +44,12 @@
         <label for="telephone" class="form-label">Telephone</label>
         <input type="text"
                formControlName="telephone"
-               [class]="'form-control '.concat((formGroup.controls['telephone'].errors && (formGroup.controls['telephone'].dirty || formGroup.controls['telephone'].touched)) ? 'is-invalid' : '')"
+               [class]="'form-control '.concat(verifyFieldInvalid('telephone') ? 'is-invalid' : '')"
                id="telephone">
-        <div class="invalid-feedback" *ngIf="formGroup.controls['telephone'].hasError('required')">
+        <div class="invalid-feedback" *ngIf="formGroup.get('telephone')?.hasError('required')">
           Telephone is required
         </div>
-        <div class="invalid-feedback" *ngIf="formGroup.controls['telephone'].hasError('maxlength')">
+        <div class="invalid-feedback" *ngIf="formGroup.get('telephone')?.hasError('maxlength')">
           At least 20 characteres are required
         </div>
       </div>
@@ -60,12 +60,12 @@
           <label for="address" class="form-label">Address</label>
           <input type="text"
                  formControlName="address"
-                 [class]="'form-control '.concat((formGroup.controls['location'].get('address')?.errors && (formGroup.controls['location'].get('address')?.dirty || formGroup.controls['location'].get('address')?.touched)) ? 'is-invalid' : '')"
+                 [class]="'form-control '.concat(verifyFieldInvalid('location.address') ? 'is-invalid' : '')"
                  id="address">
-          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('address')?.hasError('required')">
+          <div class="invalid-feedback" *ngIf="formGroup.get('location.address')?.hasError('required')">
             Address is required
           </div>
-          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('address')?.hasError('maxlength')">
+          <div class="invalid-feedback" *ngIf="formGroup.get('location.address')?.hasError('maxlength')">
             At least 20 characteres are required
           </div>
         </div>
@@ -73,12 +73,12 @@
           <label for="zipcode" class="form-label">ZIP Code</label>
           <input type="number"
                  formControlName="zipcode"
-                 [class]="'form-control '.concat((formGroup.controls['location'].get('zipcode')?.errors && (formGroup.controls['location'].get('zipcode')?.dirty || formGroup.controls['location'].get('zipcode')?.touched)) ? 'is-invalid' : '')"
+                 [class]="'form-control '.concat(verifyFieldInvalid('location.zipcode') ? 'is-invalid' : '')"
                  id="zipcode">
-          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('zipcode')?.hasError('required')">
+          <div class="invalid-feedback" *ngIf="formGroup.get('location.zipcode')?.hasError('required')">
             ZIP Code is required
           </div>
-          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('zipcode')?.hasError('maxlength')">
+          <div class="invalid-feedback" *ngIf="formGroup.get('location.zipcode')?.hasError('maxlength')">
             At least 8 characteres are required
           </div>
         </div>
@@ -86,12 +86,12 @@
           <label for="address" class="form-label">Number</label>
           <input type="text"
                  formControlName="number"
-                 [class]="'form-control '.concat((formGroup.controls['location'].get('number')?.errors && (formGroup.controls['location'].get('number')?.dirty || formGroup.controls['location'].get('number')?.touched)) ? 'is-invalid' : '')"
+                 [class]="'form-control '.concat(verifyFieldInvalid('location.number') ? 'is-invalid' : '')"
                  id="number">
-          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('number')?.hasError('required')">
+          <div class="invalid-feedback" *ngIf="formGroup.get('location.number')?.hasError('required')">
             Number is required
           </div>
-          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('number')?.hasError('maxlength')">
+          <div class="invalid-feedback" *ngIf="formGroup.get('location.number')?.hasError('maxlength')">
             At least 20 characteres are required
           </div>
         </div>
@@ -99,18 +99,18 @@
           <label for="address" class="form-label">City</label>
           <input type="text"
                  formControlName="city"
-                 [class]="'form-control '.concat((formGroup.controls['location'].get('city')?.errors && (formGroup.controls['location'].get('city')?.dirty || formGroup.controls['location'].get('city')?.touched)) ? 'is-invalid' : '')"
+                 [class]="'form-control '.concat(verifyFieldInvalid('location.city') ? 'is-invalid' : '')"
                  id="city">
-          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('city')?.hasError('required')">
+          <div class="invalid-feedback" *ngIf="formGroup.get('location.city')?.hasError('required')">
             City is required
           </div>
-          <div class="invalid-feedback" *ngIf="formGroup.controls['location'].get('city')?.hasError('maxlength')">
+          <div class="invalid-feedback" *ngIf="formGroup.get('location.city')?.hasError('maxlength')">
             At least 20 characteres are required
           </div>
         </div>
       </div>
 
-      <input type="button" class="btn btn-primary mt-4" value="Salvar" (click)="save()">
+      <input type="submit" class="btn btn-primary mt-4" value="Salvar">
     </form>
   </section>
 </div>

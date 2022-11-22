@@ -90,4 +90,7 @@ export class UserEditComponent implements OnInit {
     }
   }
 
+  verifyFieldInvalid(field: string): null | undefined | boolean {
+    return this.formGroup.get(field)?.errors && (this.formGroup.get(field)?.dirty || this.formGroup.get(field)?.touched);
+  }
 }
