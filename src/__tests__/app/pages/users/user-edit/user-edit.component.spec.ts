@@ -1,33 +1,85 @@
 import {UserEditComponent} from '../../../../../app/pages/users/user-edit/user-edit.component';
-import {UsersService} from "../../../../../app/core/services/users/users.service";
 import {FormBuilder} from "@angular/forms";
-import {ActivatedRoute} from "@angular/router";
+import {of} from "rxjs";
+import {User} from "../../../../../app/core/dtos/user";
 
 describe('UserEditComponent', () => {
+  const service = {
+    getById: (id: number) => of<{} | null>(),
+    save: (value: any) => of({}),
+    put: (value: any) => of({})
+  };
   const router = { navigate: jest.fn() };
-  const service = new UsersService();
-  const component = new UserEditComponent(service, new FormBuilder(), router as any, new ActivatedRoute());
+  const user: User = {
+    name: 'Lukas',
+    lastname: 'Tuprosky',
+    email: 'lukas.tsky@gmail.com',
+    telephone: '72855552222',
+    location: {
+      address: 'Main Street',
+      zipcode: '14888244',
+      number: '25',
+      city: 'Moscow'
+    }
+  };
 
   beforeEach(() => {
     router.navigate.mockClear();
   });
 
-  it('deve constar que o formulário está inválido e que não foi redirecionado para tela inicial', () => {
-    component.save();
+  it('should be to verify route params with id to edit user', () => {
+    const route = { params: of({ id: 1 }) };
+    const component = new UserEditComponent(service as any, new FormBuilder(), router as any, route as any);
+    component.ngOnInit();
+    jest.spyOn(service, 'getById').mockReturnValue(of(user));
     expect(component.formGroup.invalid).toBeTruthy();
-    expect(component.user).toEqual({});
-    expect(router.navigate).not.toHaveBeenCalled();
+    expect(component['edit']).toEqual(true);
   });
 
-  it('deve constar que o formulário está válido e redirecionar para tela inicial', () => {
-    component.formGroup.setValue({
-      name: 'Matheus',
-      lastname: 'Ramos',
-      email: 'matheus.hrs@live.com',
-      telephone: '47998889999',
-    });
+  it('should be to return back page when not found user', () => {
+    const route = { params: of({ id: 2 }) };
+    const component = new UserEditComponent(service as any, new FormBuilder(), router as any, route as any);
+    const userNotFound = null;
+    jest.spyOn(service, 'getById').mockReturnValue(of(userNotFound));
+    component.ngOnInit();
+    expect(router.navigate).toBeCalled();
+  });
+
+  it('should be return that form is invalid', () => {
+    const route = { params: of({}) };
+    const component = new UserEditComponent(service as any, new FormBuilder(), router as any, route as any);
     component.save();
+    expect(component.formGroup.invalid).toBeTruthy();
+    expect(component.formGroup.get('name')?.hasError('required')).toBeTruthy();
+    expect(component.formGroup.get('name')?.dirty).toBeTruthy();
+  });
+
+  it('should be save user after call save function', () => {
+    const route = { params: of({ id: 'new' }) };
+    const component = new UserEditComponent(service as any, new FormBuilder(), router as any, route as any);
+    component.formGroup.patchValue(user);
+    component.save();
+    jest.spyOn(service, 'save');
+    expect(component['edit']).toEqual(false);
     expect(component.formGroup.valid).toBeTruthy();
-    expect(router.navigate).toHaveBeenCalled();
+  });
+
+  it('should be update user after call save function', () => {
+    const route = { params: of({ id: 1 }) };
+    const component = new UserEditComponent(service as any, new FormBuilder(), router as any, route as any);
+    component['edit'] = true;
+    user.id = '1';
+    component.formGroup.patchValue(user);
+    component.save();
+    jest.spyOn(service, 'put');
+    expect(component['edit']).toEqual(true);
+    expect(component.formGroup.valid).toBeTruthy();
+  });
+
+  it('should be to verify field invalid', () => {
+    const route = { params: of({ id: 1 }) };
+    const component = new UserEditComponent(service as any, new FormBuilder(), router as any, route as any);
+    component.verifyFieldInvalid('location.city');
+    expect(component.formGroup.invalid).toBeTruthy();
   });
 });
